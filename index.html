@@ -289,8 +289,25 @@
 
     function toggleFav(id) {
       const pet = animais.find(a => a.id === id);
-      if (pet) pet.fav = !pet.fav;
+      if (pet) {
+        pet.fav = !pet.fav;
+        salvarFavoritosNoStorage();
+      }
       renderizarAnimais();
+    }
+
+    function salvarFavoritosNoStorage() {
+      const favoritosIds = animais.filter(a => a.fav).map(a => a.id);
+      localStorage.setItem('meusFavoritos', JSON.stringify(favoritosIds));
+    }
+
+    function carregarFavoritosDoStorage() {
+      const favoritosSalvos = JSON.parse(localStorage.getItem('meusFavoritos')) || [];
+      animais.forEach(pet => {
+        if (favoritosSalvos.includes(pet.id)) {
+          pet.fav = true;
+        }
+      });
     }
 
     function setFiltro(tipo) {
@@ -337,6 +354,7 @@
       alert('Autenticação realizada com sucesso!');
     }
 
+    carregarFavoritosDoStorage();
     renderizarAnimais();
     renderizarPainelOng();
   </script>
