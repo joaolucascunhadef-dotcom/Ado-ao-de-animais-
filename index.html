@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre Patas — Adoção Consciente</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: cursive, sans-serif; }
+    body { background: #FFF8F0; color: #2A1A0A; line-height: 1.5; padding-bottom: 2rem; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; font-size: 1rem; }
+    
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 1rem; }
+    
+    .btn { padding: .5rem 1rem; border-radius: 6px; font-weight: 600; }
+    .btnPrimary { background: #C85A1E; color: #fff; }
+    .btnOutline { border: 1px solid #ccc; background: #fff; }
+    .btnDanger { background: #D9381E; color: #fff; }
+    .btnSuccess { background: #4E7A52; color: #fff; }
+
+    nav { background: #FFFDC0; border-bottom: 1px solid #ddd; padding: .75rem 0; position: sticky; top: 0; z-index: 10; }
+    .navInner { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.5rem; font-weight: bold; color: #C85A1E; display: flex; align-items: center; gap: .4rem; }
+    .logoSvg { width: 24px; height: 24px; fill: #C85A1E; }
+
+    #hero { padding: 2.5rem 0; text-align: center; background: #fff; border-bottom: 1px solid #eee; margin-bottom: 2rem; }
+    #hero h1 { font-size: 2.2rem; margin-bottom: .5rem; color: #C85A1E; }
+
+    .controls { display: flex; gap: .5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .controls input { padding: .5rem; border: 1px solid #ccc; border-radius: 6px; flex: 1; min-width: 200px; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+    .card { background: #fff; border: 1px solid #ddd; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+    .card img { width: 100%; height: 160px; object-fit: cover; }
+    .cardBody { padding: 1rem; flex: 1; display: flex; flex-direction: column; gap: .5rem; }
+
+    .cardTitleWrapper { display: flex; justify-content: space-between; align-items: center; }
+    
+    .btnFav {
+      background: #FFF0F5;
+      border: 1px solid #FFC0CB;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .btnFav:hover {
+      transform: scale(1.15);
+      background: #FFE4E1;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    .btnFav:active {
+      transform: scale(0.95);
+    }
+
+    #painelOng { background: #F3E8D8; padding: 2rem 0; margin-top: 3rem; border-top: 1px solid #ddd; }
+    .crudGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 768px) { .crudGrid { grid-template-columns: 1fr; } }
+    
+    .box { background: #fff; padding: 1.5rem; border-radius: 8px; border: 1px solid #ddd; }
+    .formGroup { margin-bottom: 1rem; display: flex; flex-direction: column; gap: .25rem; }
+    .formGroup input, .formGroup select, .formGroup textarea { padding: .5rem; border: 1px solid #ccc; border-radius: 4px; }
+    .crudItem { display: flex; justify-content: space-between; align-items: center; padding: .75rem; border-bottom: 1px solid #eee; }
+
+    .modal { position: fixed; inset: 0; background: rgba(0,0,0,.5); display: none; align-items: center; justify-content: center; z-index: 20; }
+    .modal.active { display: flex; }
+    .modalContent { background: #fff; padding: 1.5rem; border-radius: 8px; max-width: 400px; width: 90%; position: relative; }
+    .close { position: absolute; right: 1rem; top: .5rem; font-size: 1.5rem; cursor: pointer; }
+    .alert { background: #FFF3CD; padding: .75rem; border-radius: 6px; margin-bottom: 1rem; font-size: .875rem; display: flex; justify-content: space-between; align-items: center; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container navInner">
+      <a href="#" class="logo">
+        <svg class="logoSvg" viewBox="0 0 100 100">
+          <circle cx="28" cy="30" r="11"/>
+          <circle cx="50" cy="20" r="11"/>
+          <circle cx="72" cy="30" r="11"/>
+          <path d="M 26,62 C 20,44 40,40 50,46 C 60,40 80,44 74,62 C 68,80 58,82 50,82 C 42,82 32,80 26,62 Z"/>
+        </svg>
+        Sobre Patas
+      </a>
+      <div id="navAuthButtons">
+        <button class="btn btnOutline" onclick="abrirModalAuth('login')">Login ONG</button>
+        <button class="btn btnPrimary" onclick="abrirModalAuth('cadastro')">Cadastrar ONG</button>
+      </div>
+    </div>
+  </nav>
+
+  <section id="hero">
+    <div class="container">
+      <h1>Todo animal merece um lar.</h1>
+      <p>Conectamos animais abandonados a famílias amorosas.</p>
+    </div>
+  </section>
+
+  <main class="container">
+    <h2>Animais disponíveis</h2>
+    <div class="controls">
+      <input type="text" id="searchInput" placeholder="Buscar por nome ou raça..." oninput="renderizarAnimais()">
+      <button class="btn btnOutline" onclick="setFiltro('todos')">Todos</button>
+      <button class="btn btnOutline" onclick="setFiltro('gato')">Gatos</button>
+      <button class="btn btnOutline" onclick="setFiltro('cao')">Cães</button>
+    </div>
+
+    <div class="grid" id="animalsGrid"></div>
+  </main>
+
+  <section id="painelOng">
+    <div class="container">
+      <h2>Painel da ONG</h2>
+      
+      <div id="authStatusAlert" class="alert">
+        <span>🔒 Faça login para cadastrar, editar ou excluir animais.</span>
+        <button class="btn btnPrimary" onclick="abrirModalAuth('login')">Login</button>
+      </div>
+
+      <div class="crudGrid">
+        <div class="box">
+          <h3 id="formCrudTitle">Cadastrar animal</h3>
+          <form id="formCadastrar" onsubmit="salvarAnimal(event)">
+            <input type="hidden" id="cadId">
+            <div class="formGroup"><label>Nome</label><input type="text" id="cadNome" required></div>
+            <div class="formGroup"><label>Tipo</label>
+              <select id="cadTipo"><option value="gato">Gato</option><option value="cao">Cão</option></select>
+            </div>
+            <div class="formGroup"><label>Raça/Porte</label><input type="text" id="cadRaca" required></div>
+            <div class="formGroup"><label>URL da imagem</label><input type="url" id="cadImg" placeholder="https://exemplo.com/foto.jpg"></div>
+            <div class="formGroup"><label>Descrição</label><textarea id="cadDesc" rows="2" required></textarea></div>
+            <div class="formGroup"><label>Contato</label><input type="text" id="cadContato" required></div>
+            <div style="display:flex; gap:.5rem;">
+              <button type="submit" id="btnSubmitCrud" class="btn btnPrimary" style="flex:1;">Salvar</button>
+              <button type="button" id="btnCancelCrud" class="btn btnOutline" style="display:none;" onclick="resetarFormulario()">Cancelar</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="box">
+          <h3>Animais no sistema</h3>
+          <div id="crudList"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal" id="modalAuthOng">
+    <div class="modalContent">
+      <span class="close" onclick="fecharModal('modalAuthOng')">&times;</span>
+      <h3 id="authTitle">Login ONG</h3>
+      <form id="formAuthOng" onsubmit="handleAuthOng(event)" style="margin-top:1rem;">
+        <div class="formGroup" id="groupCnpj" style="display:none;"><label>CNPJ</label><input type="text" id="authCnpj"></div>
+        <div class="formGroup"><label>E-mail</label><input type="email" id="authEmail" required></div>
+        <div class="formGroup"><label>Senha</label><input type="password" id="authSenha" required></div>
+        <button type="submit" id="btnSubmitAuth" class="btn btnPrimary" style="width:100%;">Entrar</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="modalDetalhes">
+    <div class="modalContent">
+      <span class="close" onclick="fecharModal('modalDetalhes')">&times;</span>
+      <img id="modalImg" src="" style="width:100%; height:150px; object-fit:cover; border-radius:4px;">
+      <h3 id="modalNome" style="margin-top:.5rem;"></h3>
+      <p id="modalRaca" style="color:#666; font-size:.8rem;"></p>
+      <p id="modalDesc" style="margin:.5rem 0;"></p>
+      <hr>
+      <p style="margin-top:.5rem;"><strong>Contato:</strong> <span id="modalContato"></span></p>
+    </div>
+  </div>
+
+  <script>
+    let ongAutenticada = false;
+    let filtroTipo = 'todos';
+    let animais = [
+      { id: 1, nome: "Bolinha", tipo: "gato", raca: "Siamês misturado", desc: "Muito carinhosa e calma.", contato: "ONG Patas do Bem — (31) 99876-5432", fav: false, img: "https://images.unsplash.com/photo-1583795128727-6ec3642408f8?w=300" },
+      { id: 2, nome: "Rex", tipo: "cao", raca: "Vira-lata", desc: "Ativo, vacinado e brincalhão.", contato: "Abrigo Salvação — (31) 98765-4321", fav: false, img: "https://images.unsplash.com/photo-1526660690293-bcd32dc3b123?w=300" }
+    ];
+
+    function renderizarAnimais() {
+      const grid = document.getElementById('animalsGrid');
+      const termo = document.getElementById('searchInput').value.toLowerCase();
+      
+      const filtrados = animais.filter(item => 
+        (filtroTipo === 'todos' || item.tipo === filtroTipo) &&
+        (item.nome.toLowerCase().includes(termo) || item.raca.toLowerCase().includes(termo))
+      );
+
+      grid.innerHTML = filtrados.length === 0 ? '<p>Nenhum animal encontrado.</p>' : filtrados.map(item => `
+        <div class="card">
+          <img src="${item.img}" alt="${item.nome}">
+          <div class="cardBody">
+            <div class="cardTitleWrapper">
+              <h3>${item.nome}</h3>
+              <button class="btnFav" onclick="toggleFav(${item.id})" title="${item.fav ? 'Remover dos favoritos' : 'Favoritar'}">
+                ${item.fav ? '❤️' : '🤍'}
+              </button>
+            </div>
+            <p style="font-size:.8rem; color:#666;">${item.raca}</p>
+            <button class="btn btnOutline" onclick="abrirDetalhes(${item.id})" style="margin-top:auto;">Ver Detalhes</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderizarPainelOng() {
+      const list = document.getElementById('crudList');
+      list.innerHTML = animais.length === 0 ? '<p>Nenhum animal cadastrado.</p>' : animais.map(item => `
+        <div class="crudItem">
+          <div><strong>${item.nome}</strong> (${item.tipo})</div>
+          <div>
+            ${ongAutenticada ? `
+              <button class="btn btnSuccess" onclick="prepararEdicao(${item.id})">Editar</button>
+              <button class="btn btnDanger" onclick="deletarAnimal(${item.id})">Excluir</button>
+            ` : '<em style="font-size:.75rem; color:#666;">Requer Login</em>'}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function salvarAnimal(e) {
+      e.preventDefault();
+      if (!ongAutenticada) {
+        alert('Faça login primeiro!');
+        abrirModalAuth('login');
+        return;
+      }
+
+      const id = document.getElementById('cadId').value;
+      const urlInformada = document.getElementById('cadImg').value.trim();
+      const imagemPadrao = "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=300";
+
+      const dados = {
+        nome: document.getElementById('cadNome').value,
+        tipo: document.getElementById('cadTipo').value,
+        raca: document.getElementById('cadRaca').value,
+        img: urlInformada || imagemPadrao,
+        desc: document.getElementById('cadDesc').value,
+        contato: document.getElementById('cadContato').value
+      };
+
+      if (id) {
+        Object.assign(animais.find(a => a.id == id), dados);
+      } else {
+        animais.push({ id: Date.now(), ...dados, fav: false });
+      }
+
+      resetarFormulario();
+      renderizarAnimais();
+      renderizarPainelOng();
+    }
+
+    function prepararEdicao(id) {
+      const pet = animais.find(a => a.id === id);
+      if (!pet) return;
+      document.getElementById('cadId').value = pet.id;
+      document.getElementById('cadNome').value = pet.nome;
+      document.getElementById('cadTipo').value = pet.tipo;
+      document.getElementById('cadRaca').value = pet.raca;
+      document.getElementById('cadImg').value = pet.img;
+      document.getElementById('cadDesc').value = pet.desc;
+      document.getElementById('cadContato').value = pet.contato;
+      document.getElementById('formCrudTitle').innerText = 'Editar Animal';
+      document.getElementById('btnCancelCrud').style.display = 'inline-block';
+    }
+
+    function deletarAnimal(id) {
+      if (confirm('Deseja mesmo excluir?')) {
+        animais = animais.filter(a => a.id !== id);
+        renderizarAnimais();
+        renderizarPainelOng();
+      }
+    }
+
+    function resetarFormulario() {
+      document.getElementById('formCadastrar').reset();
+      document.getElementById('cadId').value = '';
+      document.getElementById('formCrudTitle').innerText = 'Cadastrar Animal';
+      document.getElementById('btnCancelCrud').style.display = 'none';
+    }
+
+    function toggleFav(id) {
+      const pet = animais.find(a => a.id === id);
+      if (pet) pet.fav = !pet.fav;
+      renderizarAnimais();
+    }
+
+    function setFiltro(tipo) {
+      filtroTipo = tipo;
+      renderizarAnimais();
+    }
+
+    function abrirDetalhes(id) {
+      const pet = animais.find(a => a.id === id);
+      if (!pet) return;
+      document.getElementById('modalImg').src = pet.img;
+      document.getElementById('modalNome').innerText = pet.nome;
+      document.getElementById('modalRaca').innerText = pet.raca;
+      document.getElementById('modalDesc').innerText = pet.desc;
+      document.getElementById('modalContato').innerText = pet.contato;
+      document.getElementById('modalDetalhes').classList.add('active');
+    }
+
+    function abrirModalAuth(modo) {
+      document.getElementById('authTitle').innerText = modo === 'login' ? 'Login ONG' : 'Cadastrar ONG';
+      document.getElementById('btnSubmitAuth').innerText = modo === 'login' ? 'Entrar' : 'Cadastrar';
+      document.getElementById('groupCnpj').style.display = modo === 'login' ? 'none' : 'flex';
+      document.getElementById('modalAuthOng').classList.add('active');
+    }
+
+    function fecharModal(id) {
+      document.getElementById(id).classList.remove('active');
+    }
+
+    function handleAuthOng(e) {
+      e.preventDefault();
+      ongAutenticada = true;
+      
+      document.getElementById('navAuthButtons').innerHTML = `<button class="btn btnOutline" onclick="location.reload()">Sair</button>`;
+      document.getElementById('authStatusAlert').className = 'alert';
+      document.getElementById('authStatusAlert').style.background = '#D4EDDA';
+      document.getElementById('authStatusAlert').style.color = '#155724';
+      document.getElementById('authStatusAlert').innerHTML = '<span>✅ Sessão ONG ativa! Agora você pode gerenciar os animais.</span>';
+      
+      fecharModal('modalAuthOng');
+      document.getElementById('formAuthOng').reset();
+      renderizarPainelOng();
+      
+      alert('Autenticação realizada com sucesso!');
+    }
+
+    renderizarAnimais();
+    renderizarPainelOng();
+  </script>
+</body>
+</html>
