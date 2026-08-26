@@ -23,8 +23,8 @@
     .logotipo { font-size: 1.5rem; font-weight: bold; color: #C85A1E; display: flex; align-items: center; gap: .4rem; }
     .iconeLogotipo { width: 24px; height: 24px; fill: #C85A1E; }
 
-    #hero { padding: 2.5rem 0; text-align: center; background: #fff; border-bottom: 1px solid #eee; margin-bottom: 2rem; }
-    #hero h1 { font-size: 2.2rem; margin-bottom: .5rem; color: #C85A1E; }
+    #titulo { padding: 2.5rem 0; text-align: center; background: #fff; border-bottom: 1px solid #eee; margin-bottom: 2rem; }
+    #titulo h1 { font-size: 2.2rem; margin-bottom: .5rem; color: #C85A1E; }
 
     .controlesBusca { display: flex; gap: .5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
     .controlesBusca input { padding: .5rem; border: 1px solid #ccc; border-radius: 6px; flex: 1; min-width: 200px; }
@@ -69,9 +69,9 @@
     .grupoFormulario input, .grupoFormulario select, .grupoFormulario textarea { padding: .5rem; border: 1px solid #ccc; border-radius: 4px; }
     .itemGerenciamento { display: flex; justify-content: space-between; align-items: center; padding: .75rem; border-bottom: 1px solid #eee; }
 
-    .janelaModal { position: fixed; inset: 0; background: rgba(0,0,0,.5); display: none; align-items: center; justify-content: center; z-index: 20; }
-    .janelaModal.ativo { display: flex; }
-    .conteudoModal { background: #fff; padding: 1.5rem; border-radius: 8px; max-width: 400px; width: 90%; position: relative; }
+    .janelaTela { position: fixed; inset: 0; background: rgba(0,0,0,.5); display: none; align-items: center; justify-content: center; z-index: 20; }
+    .janelaTela.ativo { display: flex; }
+    .conteudoTela { background: #fff; padding: 1.5rem; border-radius: 8px; max-width: 400px; width: 90%; position: relative; }
     .botaoFechar { position: absolute; right: 1rem; top: .5rem; font-size: 1.5rem; cursor: pointer; }
     .alertaStatus { background: #FFF3CD; padding: .75rem; border-radius: 6px; margin-bottom: 1rem; font-size: .875rem; display: flex; justify-content: space-between; align-items: center; }
   </style>
@@ -90,13 +90,13 @@
         Sobre Patas
       </a>
       <div id="botoesAutenticacaoNav">
-        <button class="botao botaoContorno" onclick="abrirModalAutenticacao('login')">Login ONG</button>
-        <button class="botao botaoPrimario" onclick="abrirModalAutenticacao('cadastro')">Cadastrar ONG</button>
+        <button class="botao botaoContorno" onclick="abrirTelaAutenticacao('login')">Login ONG</button>
+        <button class="botao botaoPrimario" onclick="abrirTelaAutenticacao('cadastro')">Cadastrar ONG</button>
       </div>
     </div>
   </nav>
 
-  <section id="hero">
+  <section id="titulo">
     <div class="conteudoPrincipal">
       <h1>Todo animal merece um lar.</h1>
       <p>Conectamos animais abandonados a famílias amorosas.</p>
@@ -121,7 +121,7 @@
       
       <div id="alertaStatusAutenticacao" class="alertaStatus">
         <span>🔒 Faça login para cadastrar, editar ou excluir animais.</span>
-        <button class="botao botaoPrimario" onclick="abrirModalAutenticacao('login')">Login</button>
+        <button class="botao botaoPrimario" onclick="abrirTelaAutenticacao('login')">Login</button>
       </div>
 
       <div class="gradePainel">
@@ -152,9 +152,9 @@
     </div>
   </section>
 
-  <div class="janelaModal" id="modalAutenticacao">
-    <div class="conteudoModal">
-      <span class="botaoFechar" onclick="fecharModal('modalAutenticacao')">&times;</span>
+  <div class="janelaTela" id="telaAutenticacao">
+    <div class="conteudoTela">
+      <span class="botaoFechar" onclick="fecharTela('telaAutenticacao')">&times;</span>
       <h3 id="tituloAutenticacao">Login ONG</h3>
       <form id="formularioAutenticacao" onsubmit="processarAutenticacao(event)" style="margin-top:1rem;">
         <div class="grupoFormulario" id="grupoCnpj" style="display:none;"><label>CNPJ</label><input type="text" id="campoCnpj"></div>
@@ -165,9 +165,9 @@
     </div>
   </div>
 
-  <div class="janelaModal" id="modalDetalhes">
-    <div class="conteudoModal">
-      <span class="botaoFechar" onclick="fecharModal('modalDetalhes')">&times;</span>
+  <div class="janelaTela" id="telaDetalhes">
+    <div class="conteudoTela">
+      <span class="botaoFechar" onclick="fecharTela('telaDetalhes')">&times;</span>
       <img id="imagemDetalhes" src="" style="width:100%; height:150px; object-fit:cover; border-radius:4px;">
       <h3 id="nomeDetalhes" style="margin-top:.5rem;"></h3>
       <p id="racaDetalhes" style="color:#666; font-size:.8rem;"></p>
@@ -234,7 +234,7 @@
 
     function salvarDadosAnimal(evento) {
       evento.preventDefault();
-      if (!usuarioLogado) return alert('Faça login primeiro!'), abrirModalAutenticacao('login');
+      if (!usuarioLogado) return alert('Faça login primeiro!'), abrirTelaAutenticacao('login');
 
       const idAnimal = document.getElementById('campoIdAnimal').value;
       const dadosNovos = {
@@ -307,18 +307,18 @@
       document.getElementById('racaDetalhes').innerText = pet.raca;
       document.getElementById('descricaoDetalhes').innerText = pet.desc;
       document.getElementById('contatoDetalhes').innerText = pet.contato;
-      document.getElementById('modalDetalhes').classList.add('ativo');
+      document.getElementById('telaDetalhes').classList.add('ativo');
     }
 
-    function abrirModalAutenticacao(modo) {
+    function abrirTelaAutenticacao(modo) {
       document.getElementById('tituloAutenticacao').innerText = modo === 'login' ? 'Login ONG' : 'Cadastrar ONG';
       document.getElementById('botaoEnviarAutenticacao').innerText = modo === 'login' ? 'Entrar' : 'Cadastrar';
       document.getElementById('grupoCnpj').style.display = modo === 'login' ? 'none' : 'flex';
-      document.getElementById('modalAutenticacao').classList.add('ativo');
+      document.getElementById('telaAutenticacao').classList.add('ativo');
     }
 
-    function fecharModal(idModal) {
-      document.getElementById(idModal).classList.remove('ativo');
+    function fecharTela(idTela) {
+      document.getElementById(idTela).classList.remove('ativo');
     }
 
     function processarAutenticacao(evento) {
@@ -333,7 +333,7 @@
       alerta.style.color = '#155724';
       alerta.innerHTML = '<span>✅ Sessão ONG ativa! Agora você pode gerenciar os animais.</span>';
       
-      fecharModal('modalAutenticacao');
+      fecharTela('telaAutenticacao');
       document.getElementById('formularioAutenticacao').reset();
       atualizarInterface();
       alert('Autenticação realizada com sucesso!');
