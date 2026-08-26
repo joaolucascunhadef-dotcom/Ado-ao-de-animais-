@@ -10,33 +10,33 @@
     a { text-decoration: none; color: inherit; }
     button { cursor: pointer; border: none; font-size: 1rem; }
     
-    .container { max-width: 1000px; margin: 0 auto; padding: 0 1rem; }
+    .conteudoPrincipal { max-width: 1000px; margin: 0 auto; padding: 0 1rem; }
     
-    .btn { padding: .5rem 1rem; border-radius: 6px; font-weight: 600; }
-    .btnPrimary { background: #C85A1E; color: #fff; }
-    .btnOutline { border: 1px solid #ccc; background: #fff; }
-    .btnDanger { background: #D9381E; color: #fff; }
-    .btnSuccess { background: #4E7A52; color: #fff; }
+    .botao { padding: .5rem 1rem; border-radius: 6px; font-weight: 600; }
+    .botaoPrimario { background: #C85A1E; color: #fff; }
+    .botaoContorno { border: 1px solid #ccc; background: #fff; }
+    .botaoPerigo { background: #D9381E; color: #fff; }
+    .botaoSucesso { background: #4E7A52; color: #fff; }
 
     nav { background: #FFFDC0; border-bottom: 1px solid #ddd; padding: .75rem 0; position: sticky; top: 0; z-index: 10; }
-    .navInner { display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 1.5rem; font-weight: bold; color: #C85A1E; display: flex; align-items: center; gap: .4rem; }
-    .logoSvg { width: 24px; height: 24px; fill: #C85A1E; }
+    .navegacaoInterna { display: flex; justify-content: space-between; align-items: center; }
+    .logotipo { font-size: 1.5rem; font-weight: bold; color: #C85A1E; display: flex; align-items: center; gap: .4rem; }
+    .iconeLogotipo { width: 24px; height: 24px; fill: #C85A1E; }
 
     #hero { padding: 2.5rem 0; text-align: center; background: #fff; border-bottom: 1px solid #eee; margin-bottom: 2rem; }
     #hero h1 { font-size: 2.2rem; margin-bottom: .5rem; color: #C85A1E; }
 
-    .controls { display: flex; gap: .5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-    .controls input { padding: .5rem; border: 1px solid #ccc; border-radius: 6px; flex: 1; min-width: 200px; }
+    .controlesBusca { display: flex; gap: .5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .controlesBusca input { padding: .5rem; border: 1px solid #ccc; border-radius: 6px; flex: 1; min-width: 200px; }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
-    .card { background: #fff; border: 1px solid #ddd; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
-    .card img { width: 100%; height: 160px; object-fit: cover; }
-    .cardBody { padding: 1rem; flex: 1; display: flex; flex-direction: column; gap: .5rem; }
+    .gradeAnimais { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+    .cartaoAnimal { background: #fff; border: 1px solid #ddd; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+    .cartaoAnimal img { width: 100%; height: 160px; object-fit: cover; }
+    .corpoCartao { padding: 1rem; flex: 1; display: flex; flex-direction: column; gap: .5rem; }
 
-    .cardTitleWrapper { display: flex; justify-content: space-between; align-items: center; }
+    .topoCartao { display: flex; justify-content: space-between; align-items: center; }
     
-    .btnFav {
+    .botaoFavorito {
       background: #FFF0F5;
       border: 1px solid #FFC0CB;
       border-radius: 50%;
@@ -50,38 +50,38 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
-    .btnFav:hover {
+    .botaoFavorito:hover {
       transform: scale(1.15);
       background: #FFE4E1;
       box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     }
 
-    .btnFav:active {
+    .botaoFavorito:active {
       transform: scale(0.95);
     }
 
     #painelOng { background: #F3E8D8; padding: 2rem 0; margin-top: 3rem; border-top: 1px solid #ddd; }
-    .crudGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    @media (max-width: 768px) { .crudGrid { grid-template-columns: 1fr; } }
+    .gradePainel { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 768px) { .gradePainel { grid-template-columns: 1fr; } }
     
-    .box { background: #fff; padding: 1.5rem; border-radius: 8px; border: 1px solid #ddd; }
-    .formGroup { margin-bottom: 1rem; display: flex; flex-direction: column; gap: .25rem; }
-    .formGroup input, .formGroup select, .formGroup textarea { padding: .5rem; border: 1px solid #ccc; border-radius: 4px; }
-    .crudItem { display: flex; justify-content: space-between; align-items: center; padding: .75rem; border-bottom: 1px solid #eee; }
+    .caixaPainel { background: #fff; padding: 1.5rem; border-radius: 8px; border: 1px solid #ddd; }
+    .grupoFormulario { margin-bottom: 1rem; display: flex; flex-direction: column; gap: .25rem; }
+    .grupoFormulario input, .grupoFormulario select, .grupoFormulario textarea { padding: .5rem; border: 1px solid #ccc; border-radius: 4px; }
+    .itemGerenciamento { display: flex; justify-content: space-between; align-items: center; padding: .75rem; border-bottom: 1px solid #eee; }
 
-    .modal { position: fixed; inset: 0; background: rgba(0,0,0,.5); display: none; align-items: center; justify-content: center; z-index: 20; }
-    .modal.active { display: flex; }
-    .modalContent { background: #fff; padding: 1.5rem; border-radius: 8px; max-width: 400px; width: 90%; position: relative; }
-    .close { position: absolute; right: 1rem; top: .5rem; font-size: 1.5rem; cursor: pointer; }
-    .alert { background: #FFF3CD; padding: .75rem; border-radius: 6px; margin-bottom: 1rem; font-size: .875rem; display: flex; justify-content: space-between; align-items: center; }
+    .janelaModal { position: fixed; inset: 0; background: rgba(0,0,0,.5); display: none; align-items: center; justify-content: center; z-index: 20; }
+    .janelaModal.ativo { display: flex; }
+    .conteudoModal { background: #fff; padding: 1.5rem; border-radius: 8px; max-width: 400px; width: 90%; position: relative; }
+    .botaoFechar { position: absolute; right: 1rem; top: .5rem; font-size: 1.5rem; cursor: pointer; }
+    .alertaStatus { background: #FFF3CD; padding: .75rem; border-radius: 6px; margin-bottom: 1rem; font-size: .875rem; display: flex; justify-content: space-between; align-items: center; }
   </style>
 </head>
 <body>
 
   <nav>
-    <div class="container navInner">
-      <a href="#" class="logo">
-        <svg class="logoSvg" viewBox="0 0 100 100">
+    <div class="conteudoPrincipal navegacaoInterna">
+      <a href="#" class="logotipo">
+        <svg class="iconeLogotipo" viewBox="0 0 100 100">
           <circle cx="28" cy="30" r="11"/>
           <circle cx="50" cy="20" r="11"/>
           <circle cx="72" cy="30" r="11"/>
@@ -89,259 +89,257 @@
         </svg>
         Sobre Patas
       </a>
-      <div id="navAuthButtons">
-        <button class="btn btnOutline" onclick="abrirModalAuth('login')">Login ONG</button>
-        <button class="btn btnPrimary" onclick="abrirModalAuth('cadastro')">Cadastrar ONG</button>
+      <div id="botoesAutenticacaoNav">
+        <button class="botao botaoContorno" onclick="abrirModalAutenticacao('login')">Login ONG</button>
+        <button class="botao botaoPrimario" onclick="abrirModalAutenticacao('cadastro')">Cadastrar ONG</button>
       </div>
     </div>
   </nav>
 
   <section id="hero">
-    <div class="container">
+    <div class="conteudoPrincipal">
       <h1>Todo animal merece um lar.</h1>
       <p>Conectamos animais abandonados a famílias amorosas.</p>
     </div>
   </section>
 
-  <main class="container">
+  <main class="conteudoPrincipal">
     <h2>Animais disponíveis</h2>
-    <div class="controls">
-      <input type="text" id="searchInput" placeholder="Buscar por nome ou raça..." oninput="atualizarTela()">
-      <button class="btn btnOutline" onclick="setFiltro('todos')">Todos</button>
-      <button class="btn btnOutline" onclick="setFiltro('gato')">Gatos</button>
-      <button class="btn btnOutline" onclick="setFiltro('cao')">Cães</button>
+    <div class="controlesBusca">
+      <input type="text" id="campoBusca" placeholder="Buscar por nome ou raça..." oninput="atualizarInterface()">
+      <button class="botao botaoContorno" onclick="definirFiltro('todos')">Todos</button>
+      <button class="botao botaoContorno" onclick="definirFiltro('gato')">Gatos</button>
+      <button class="botao botaoContorno" onclick="definirFiltro('cao')">Cães</button>
     </div>
 
-    <div class="grid" id="animalsGrid"></div>
+    <div class="gradeAnimais" id="gradeAnimais"></div>
   </main>
 
   <section id="painelOng">
-    <div class="container">
+    <div class="conteudoPrincipal">
       <h2>Painel da ONG</h2>
       
-      <div id="authStatusAlert" class="alert">
+      <div id="alertaStatusAutenticacao" class="alertaStatus">
         <span>🔒 Faça login para cadastrar, editar ou excluir animais.</span>
-        <button class="btn btnPrimary" onclick="abrirModalAuth('login')">Login</button>
+        <button class="botao botaoPrimario" onclick="abrirModalAutenticacao('login')">Login</button>
       </div>
 
-      <div class="crudGrid">
-        <div class="box">
-          <h3 id="formCrudTitle">Cadastrar animal</h3>
-          <form id="formCadastrar" onsubmit="salvarAnimal(event)">
-            <input type="hidden" id="cadId">
-            <div class="formGroup"><label>Nome</label><input type="text" id="cadNome" required></div>
-            <div class="formGroup"><label>Tipo</label>
-              <select id="cadTipo"><option value="gato">Gato</option><option value="cao">Cão</option></select>
+      <div class="gradePainel">
+        <div class="caixaPainel">
+          <h3 id="tituloFormularioCrud">Cadastrar animal</h3>
+          <form id="formularioCadastro" onsubmit="salvarDadosAnimal(event)">
+            <input type="hidden" id="campoIdAnimal">
+            <div class="grupoFormulario"><label>Nome</label><input type="text" id="campoNome" required></div>
+            <div class="grupoFormulario"><label>Tipo</label>
+              <select id="campoTipo"><option value="gato">Gato</option><option value="cao">Cão</option></select>
             </div>
-            <div class="formGroup"><label>Raça/Porte</label><input type="text" id="cadRaca" required></div>
-            <div class="formGroup"><label>URL da imagem</label><input type="url" id="cadImg" placeholder="https://exemplo.com/foto.jpg"></div>
-            <div class="formGroup"><label>Descrição</label><textarea id="cadDesc" rows="2" required></textarea></div>
-            <div class="formGroup"><label>Contato</label><input type="text" id="cadContato" required></div>
+            <div class="grupoFormulario"><label>Raça/Porte</label><input type="text" id="campoRaca" required></div>
+            <div class="grupoFormulario"><label>URL da imagem</label><input type="url" id="campoImagem" placeholder="https://exemplo.com/foto.jpg"></div>
+            <div class="grupoFormulario"><label>Descrição</label><textarea id="campoDescricao" rows="2" required></textarea></div>
+            <div class="grupoFormulario"><label>Contato</label><input type="text" id="campoContato" required></div>
             <div style="display:flex; gap:.5rem;">
-              <button type="submit" id="btnSubmitCrud" class="btn btnPrimary" style="flex:1;">Salvar</button>
-              <button type="button" id="btnCancelCrud" class="btn btnOutline" style="display:none;" onclick="resetarFormulario()">Cancelar</button>
+              <button type="submit" id="botaoEnviarCrud" class="botao botaoPrimario" style="flex:1;">Salvar</button>
+              <button type="button" id="botaoCancelarCrud" class="botao botaoContorno" style="display:none;" onclick="resetarFormularioCrud()">Cancelar</button>
             </div>
           </form>
         </div>
 
-        <div class="box">
+        <div class="caixaPainel">
           <h3>Animais no sistema</h3>
-          <div id="crudList"></div>
+          <div id="listaGerenciamento"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="modal" id="modalAuthOng">
-    <div class="modalContent">
-      <span class="close" onclick="fecharModal('modalAuthOng')">&times;</span>
-      <h3 id="authTitle">Login ONG</h3>
-      <form id="formAuthOng" onsubmit="handleAuthOng(event)" style="margin-top:1rem;">
-        <div class="formGroup" id="groupCnpj" style="display:none;"><label>CNPJ</label><input type="text" id="authCnpj"></div>
-        <div class="formGroup"><label>E-mail</label><input type="email" id="authEmail" required></div>
-        <div class="formGroup"><label>Senha</label><input type="password" id="authSenha" required></div>
-        <button type="submit" id="btnSubmitAuth" class="btn btnPrimary" style="width:100%;">Entrar</button>
+  <div class="janelaModal" id="modalAutenticacao">
+    <div class="conteudoModal">
+      <span class="botaoFechar" onclick="fecharModal('modalAutenticacao')">&times;</span>
+      <h3 id="tituloAutenticacao">Login ONG</h3>
+      <form id="formularioAutenticacao" onsubmit="processarAutenticacao(event)" style="margin-top:1rem;">
+        <div class="grupoFormulario" id="grupoCnpj" style="display:none;"><label>CNPJ</label><input type="text" id="campoCnpj"></div>
+        <div class="grupoFormulario"><label>E-mail</label><input type="email" id="campoEmail" required></div>
+        <div class="grupoFormulario"><label>Senha</label><input type="password" id="campoSenha" required></div>
+        <button type="submit" id="botaoEnviarAutenticacao" class="botao botaoPrimario" style="width:100%;">Entrar</button>
       </form>
     </div>
   </div>
 
-  <div class="modal" id="modalDetalhes">
-    <div class="modalContent">
-      <span class="close" onclick="fecharModal('modalDetalhes')">&times;</span>
-      <img id="modalImg" src="" style="width:100%; height:150px; object-fit:cover; border-radius:4px;">
-      <h3 id="modalNome" style="margin-top:.5rem;"></h3>
-      <p id="modalRaca" style="color:#666; font-size:.8rem;"></p>
-      <p id="modalDesc" style="margin:.5rem 0;"></p>
+  <div class="janelaModal" id="modalDetalhes">
+    <div class="conteudoModal">
+      <span class="botaoFechar" onclick="fecharModal('modalDetalhes')">&times;</span>
+      <img id="imagemDetalhes" src="" style="width:100%; height:150px; object-fit:cover; border-radius:4px;">
+      <h3 id="nomeDetalhes" style="margin-top:.5rem;"></h3>
+      <p id="racaDetalhes" style="color:#666; font-size:.8rem;"></p>
+      <p id="descricaoDetalhes" style="margin:.5rem 0;"></p>
       <hr>
-      <p style="margin-top:.5rem;"><strong>Contato:</strong> <span id="modalContato"></span></p>
+      <p style="margin-top:.5rem;"><strong>Contato:</strong> <span id="contatoDetalhes"></span></p>
     </div>
   </div>
 
   <script>
-    let logado = false;
-    let filtro = 'todos';
-    let animais = [
+    let usuarioLogado = false;
+    let filtroAtual = 'todos';
+    let listaAnimais = [
       { id: 1, nome: "Bolinha", tipo: "gato", raca: "Siamês misturado", desc: "Muito carinhosa e calma.", contato: "ONG Patas do Bem — (31) 99876-5432", fav: false, img: "https://images.unsplash.com/photo-1583795128727-6ec3642408f8?w=300" },
       { id: 2, nome: "Rex", tipo: "cao", raca: "Vira-lata", desc: "Ativo, vacinado e brincalhão.", contato: "Abrigo Salvação — (31) 98765-4321", fav: false, img: "https://images.unsplash.com/photo-1526660690293-bcd32dc3b123?w=300" }
     ];
 
-    // Carrega favoritos salvos no navegador ao iniciar
-    const salvos = JSON.parse(localStorage.getItem('meusFavoritos')) || [];
-    animais.forEach(p => { if (salvos.includes(p.id)) p.fav = true; });
+    const favoritosSalvos = JSON.parse(localStorage.getItem('meusFavoritos')) || [];
+    listaAnimais.forEach(pet => { if (favoritosSalvos.includes(pet.id)) pet.fav = true; });
 
-    function atualizarTela() {
+    function atualizarInterface() {
       renderizarAnimais();
-      renderizarPainelOng();
+      renderizarPainelGerenciamento();
     }
 
     function renderizarAnimais() {
-      const termo = document.getElementById('searchInput').value.toLowerCase();
-      const grid = document.getElementById('animalsGrid');
+      const termoBusca = document.getElementById('campoBusca').value.toLowerCase();
+      const grade = document.getElementById('gradeAnimais');
       
-      const lista = animais.filter(p => 
-        (filtro === 'todos' || p.tipo === filtro) &&
-        (p.nome.toLowerCase().includes(termo) || p.raca.toLowerCase().includes(termo))
+      const animaisFiltrados = listaAnimais.filter(pet => 
+        (filtroAtual === 'todos' || pet.tipo === filtroAtual) &&
+        (pet.nome.toLowerCase().includes(termoBusca) || pet.raca.toLowerCase().includes(termoBusca))
       );
 
-      grid.innerHTML = lista.length ? lista.map(p => `
-        <div class="card">
-          <img src="${p.img}" alt="${p.nome}">
-          <div class="cardBody">
-            <div class="cardTitleWrapper">
-              <h3>${p.nome}</h3>
-              <button class="btnFav" onclick="toggleFav(${p.id})">${p.fav ? '❤️' : '🤍'}</button>
+      grade.innerHTML = animaisFiltrados.length ? animaisFiltrados.map(pet => `
+        <div class="cartaoAnimal">
+          <img src="${pet.img}" alt="${pet.nome}">
+          <div class="corpoCartao">
+            <div class="topoCartao">
+              <h3>${pet.nome}</h3>
+              <button class="botaoFavorito" onclick="alternarFavorito(${pet.id})">${pet.fav ? '❤️' : '🤍'}</button>
             </div>
-            <p style="font-size:.8rem; color:#666;">${p.raca}</p>
-            <button class="btn btnOutline" onclick="abrirDetalhes(${p.id})" style="margin-top:auto;">Ver Detalhes</button>
+            <p style="font-size:.8rem; color:#666;">${pet.raca}</p>
+            <button class="botao botaoContorno" onclick="abrirDetalhesAnimal(${pet.id})" style="margin-top:auto;">Ver Detalhes</button>
           </div>
         </div>
       `).join('') : '<p>Nenhum animal encontrado.</p>';
     }
 
-    function renderizarPainelOng() {
-      const list = document.getElementById('crudList');
-      list.innerHTML = animais.length ? animais.map(p => `
-        <div class="crudItem">
-          <div><strong>${p.nome}</strong> (${p.tipo})</div>
+    function renderizarPainelGerenciamento() {
+      const listaGerenciamento = document.getElementById('listaGerenciamento');
+      listaGerenciamento.innerHTML = listaAnimais.length ? listaAnimais.map(pet => `
+        <div class="itemGerenciamento">
+          <div><strong>${pet.nome}</strong> (${pet.tipo})</div>
           <div>
-            ${logado ? `
-              <button class="btn btnSuccess" onclick="prepararEdicao(${p.id})">Editar</button>
-              <button class="btn btnDanger" onclick="deletarAnimal(${p.id})">Excluir</button>
+            ${usuarioLogado ? `
+              <button class="botao botaoSucesso" onclick="prepararEdicaoAnimal(${pet.id})">Editar</button>
+              <button class="botao botaoPerigo" onclick="deletarAnimal(${pet.id})">Excluir</button>
             ` : '<em style="font-size:.75rem; color:#666;">Requer Login</em>'}
           </div>
         </div>
       `).join('') : '<p>Nenhum animal cadastrado.</p>';
     }
 
-    function salvarAnimal(e) {
-      e.preventDefault();
-      if (!logado) return alert('Faça login primeiro!'), abrirModalAuth('login');
+    function salvarDadosAnimal(evento) {
+      evento.preventDefault();
+      if (!usuarioLogado) return alert('Faça login primeiro!'), abrirModalAutenticacao('login');
 
-      const id = document.getElementById('cadId').value;
-      const dados = {
-        nome: document.getElementById('cadNome').value,
-        tipo: document.getElementById('cadTipo').value,
-        raca: document.getElementById('cadRaca').value,
-        img: document.getElementById('cadImg').value.trim() || "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=300",
-        desc: document.getElementById('cadDesc').value,
-        contato: document.getElementById('cadContato').value
+      const idAnimal = document.getElementById('campoIdAnimal').value;
+      const dadosNovos = {
+        nome: document.getElementById('campoNome').value,
+        tipo: document.getElementById('campoTipo').value,
+        raca: document.getElementById('campoRaca').value,
+        img: document.getElementById('campoImagem').value.trim() || "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=300",
+        desc: document.getElementById('campoDescricao').value,
+        contato: document.getElementById('campoContato').value
       };
 
-      if (id) {
-        Object.assign(animais.find(p => p.id == id), dados);
+      if (idAnimal) {
+        Object.assign(listaAnimais.find(pet => pet.id == idAnimal), dadosNovos);
       } else {
-        animais.push({ id: Date.now(), ...dados, fav: false });
+        listaAnimais.push({ id: Date.now(), ...dadosNovos, fav: false });
       }
 
-      resetarFormulario();
-      atualizarTela();
+      resetarFormularioCrud();
+      atualizarInterface();
     }
 
-    function prepararEdicao(id) {
-      const p = animais.find(item => item.id === id);
-      if (!p) return;
-      document.getElementById('cadId').value = p.id;
-      document.getElementById('cadNome').value = p.nome;
-      document.getElementById('cadTipo').value = p.tipo;
-      document.getElementById('cadRaca').value = p.raca;
-      document.getElementById('cadImg').value = p.img;
-      document.getElementById('cadDesc').value = p.desc;
-      document.getElementById('cadContato').value = p.contato;
-      document.getElementById('formCrudTitle').innerText = 'Editar Animal';
-      document.getElementById('btnCancelCrud').style.display = 'inline-block';
+    function prepararEdicaoAnimal(id) {
+      const pet = listaAnimais.find(item => item.id === id);
+      if (!pet) return;
+      document.getElementById('campoIdAnimal').value = pet.id;
+      document.getElementById('campoNome').value = pet.nome;
+      document.getElementById('campoTipo').value = pet.tipo;
+      document.getElementById('campoRaca').value = pet.raca;
+      document.getElementById('campoImagem').value = pet.img;
+      document.getElementById('campoDescricao').value = pet.desc;
+      document.getElementById('campoContato').value = pet.contato;
+      document.getElementById('tituloFormularioCrud').innerText = 'Editar Animal';
+      document.getElementById('botaoCancelarCrud').style.display = 'inline-block';
     }
 
     function deletarAnimal(id) {
       if (confirm('Deseja mesmo excluir?')) {
-        animais = animais.filter(p => p.id !== id);
-        atualizarTela();
+        listaAnimais = listaAnimais.filter(pet => pet.id !== id);
+        atualizarInterface();
       }
     }
 
-    function resetarFormulario() {
-      document.getElementById('formCadastrar').reset();
-      document.getElementById('cadId').value = '';
-      document.getElementById('formCrudTitle').innerText = 'Cadastrar Animal';
-      document.getElementById('btnCancelCrud').style.display = 'none';
+    function resetarFormularioCrud() {
+      document.getElementById('formularioCadastro').reset();
+      document.getElementById('campoIdAnimal').value = '';
+      document.getElementById('tituloFormularioCrud').innerText = 'Cadastrar animal';
+      document.getElementById('botaoCancelarCrud').style.display = 'none';
     }
 
-    function toggleFav(id) {
-      const p = animais.find(item => item.id === id);
-      if (p) {
-        p.fav = !p.fav;
-        const ids = animais.filter(item => item.fav).map(item => item.id);
-        localStorage.setItem('meusFavoritos', JSON.stringify(ids));
+    function alternarFavorito(id) {
+      const pet = listaAnimais.find(item => item.id === id);
+      if (pet) {
+        pet.fav = !pet.fav;
+        const idsFavoritos = listaAnimais.filter(item => item.fav).map(item => item.id);
+        localStorage.setItem('meusFavoritos', JSON.stringify(idsFavoritos));
       }
       renderizarAnimais();
     }
 
-    function setFiltro(tipoValor) {
-      filtro = tipoValor;
+    function definirFiltro(tipo) {
+      filtroAtual = tipo;
       renderizarAnimais();
     }
 
-    function abrirDetalhes(id) {
-      const p = animais.find(item => item.id === id);
-      if (!p) return;
-      document.getElementById('modalImg').src = p.img;
-      document.getElementById('modalNome').innerText = p.nome;
-      document.getElementById('modalRaca').innerText = p.raca;
-      document.getElementById('modalDesc').innerText = p.desc;
-      document.getElementById('modalContato').innerText = p.contato;
-      document.getElementById('modalDetalhes').classList.add('active');
+    function abrirDetalhesAnimal(id) {
+      const pet = listaAnimais.find(item => item.id === id);
+      if (!pet) return;
+      document.getElementById('imagemDetalhes').src = pet.img;
+      document.getElementById('nomeDetalhes').innerText = pet.nome;
+      document.getElementById('racaDetalhes').innerText = pet.raca;
+      document.getElementById('descricaoDetalhes').innerText = pet.desc;
+      document.getElementById('contatoDetalhes').innerText = pet.contato;
+      document.getElementById('modalDetalhes').classList.add('ativo');
     }
 
-    function abrirModalAuth(modo) {
-      document.getElementById('authTitle').innerText = modo === 'login' ? 'Login ONG' : 'Cadastrar ONG';
-      document.getElementById('btnSubmitAuth').innerText = modo === 'login' ? 'Entrar' : 'Cadastrar';
-      document.getElementById('groupCnpj').style.display = modo === 'login' ? 'none' : 'flex';
-      document.getElementById('modalAuthOng').classList.add('active');
+    function abrirModalAutenticacao(modo) {
+      document.getElementById('tituloAutenticacao').innerText = modo === 'login' ? 'Login ONG' : 'Cadastrar ONG';
+      document.getElementById('botaoEnviarAutenticacao').innerText = modo === 'login' ? 'Entrar' : 'Cadastrar';
+      document.getElementById('grupoCnpj').style.display = modo === 'login' ? 'none' : 'flex';
+      document.getElementById('modalAutenticacao').classList.add('ativo');
     }
 
     function fecharModal(idModal) {
-      document.getElementById(idModal).classList.remove('active');
+      document.getElementById(idModal).classList.remove('ativo');
     }
 
-    function handleAuthOng(e) {
-      e.preventDefault();
-      logado = true;
+    function processarAutenticacao(evento) {
+      evento.preventDefault();
+      usuarioLogado = true;
       
-      document.getElementById('navAuthButtons').innerHTML = `<button class="btn btnOutline" onclick="location.reload()">Sair</button>`;
+      document.getElementById('botoesAutenticacaoNav').innerHTML = `<button class="botao botaoContorno" onclick="location.reload()">Sair</button>`;
       
-      const alerta = document.getElementById('authStatusAlert');
-      alerta.className = 'alert';
+      const alerta = document.getElementById('alertaStatusAutenticacao');
+      alerta.className = 'alertaStatus';
       alerta.style.background = '#D4EDDA';
       alerta.style.color = '#155724';
       alerta.innerHTML = '<span>✅ Sessão ONG ativa! Agora você pode gerenciar os animais.</span>';
       
-      fecharModal('modalAuthOng');
-      document.getElementById('formAuthOng').reset();
-      atualizarTela();
+      fecharModal('modalAutenticacao');
+      document.getElementById('formularioAutenticacao').reset();
+      atualizarInterface();
       alert('Autenticação realizada com sucesso!');
     }
 
-    // Inicialização da página
-    atualizarTela();
+    atualizarInterface();
   </script>
 </body>
 </html>
