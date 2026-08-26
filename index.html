@@ -106,7 +106,7 @@
   <main class="container">
     <h2>Animais disponíveis</h2>
     <div class="controls">
-      <input type="text" id="searchInput" placeholder="Buscar por nome ou raça..." oninput="renderizarAnimais()">
+      <input type="text" id="searchInput" placeholder="Buscar por nome ou raça..." oninput="atualizarTela()">
       <button class="btn btnOutline" onclick="setFiltro('todos')">Todos</button>
       <button class="btn btnOutline" onclick="setFiltro('gato')">Gatos</button>
       <button class="btn btnOutline" onclick="setFiltro('cao')">Cães</button>
@@ -178,105 +178,103 @@
   </div>
 
   <script>
-    let ongAutenticada = false;
-    let filtroTipo = 'todos';
+    let logado = false;
+    let filtro = 'todos';
     let animais = [
       { id: 1, nome: "Bolinha", tipo: "gato", raca: "Siamês misturado", desc: "Muito carinhosa e calma.", contato: "ONG Patas do Bem — (31) 99876-5432", fav: false, img: "https://images.unsplash.com/photo-1583795128727-6ec3642408f8?w=300" },
       { id: 2, nome: "Rex", tipo: "cao", raca: "Vira-lata", desc: "Ativo, vacinado e brincalhão.", contato: "Abrigo Salvação — (31) 98765-4321", fav: false, img: "https://images.unsplash.com/photo-1526660690293-bcd32dc3b123?w=300" }
     ];
 
+    // Carrega favoritos salvos no navegador ao iniciar
+    const salvos = JSON.parse(localStorage.getItem('meusFavoritos')) || [];
+    animais.forEach(p => { if (salvos.includes(p.id)) p.fav = true; });
+
+    function atualizarTela() {
+      renderizarAnimais();
+      renderizarPainelOng();
+    }
+
     function renderizarAnimais() {
-      const grid = document.getElementById('animalsGrid');
       const termo = document.getElementById('searchInput').value.toLowerCase();
+      const grid = document.getElementById('animalsGrid');
       
-      const filtrados = animais.filter(item => 
-        (filtroTipo === 'todos' || item.tipo === filtroTipo) &&
-        (item.nome.toLowerCase().includes(termo) || item.raca.toLowerCase().includes(termo))
+      const lista = animais.filter(p => 
+        (filtro === 'todos' || p.tipo === filtro) &&
+        (p.nome.toLowerCase().includes(termo) || p.raca.toLowerCase().includes(termo))
       );
 
-      grid.innerHTML = filtrados.length === 0 ? '<p>Nenhum animal encontrado.</p>' : filtrados.map(item => `
+      grid.innerHTML = lista.length ? lista.map(p => `
         <div class="card">
-          <img src="${item.img}" alt="${item.nome}">
+          <img src="${p.img}" alt="${p.nome}">
           <div class="cardBody">
             <div class="cardTitleWrapper">
-              <h3>${item.nome}</h3>
-              <button class="btnFav" onclick="toggleFav(${item.id})" title="${item.fav ? 'Remover dos favoritos' : 'Favoritar'}">
-                ${item.fav ? '❤️' : '🤍'}
-              </button>
+              <h3>${p.nome}</h3>
+              <button class="btnFav" onclick="toggleFav(${p.id})">${p.fav ? '❤️' : '🤍'}</button>
             </div>
-            <p style="font-size:.8rem; color:#666;">${item.raca}</p>
-            <button class="btn btnOutline" onclick="abrirDetalhes(${item.id})" style="margin-top:auto;">Ver Detalhes</button>
+            <p style="font-size:.8rem; color:#666;">${p.raca}</p>
+            <button class="btn btnOutline" onclick="abrirDetalhes(${p.id})" style="margin-top:auto;">Ver Detalhes</button>
           </div>
         </div>
-      `).join('');
+      `).join('') : '<p>Nenhum animal encontrado.</p>';
     }
 
     function renderizarPainelOng() {
       const list = document.getElementById('crudList');
-      list.innerHTML = animais.length === 0 ? '<p>Nenhum animal cadastrado.</p>' : animais.map(item => `
+      list.innerHTML = animais.length ? animais.map(p => `
         <div class="crudItem">
-          <div><strong>${item.nome}</strong> (${item.tipo})</div>
+          <div><strong>${p.nome}</strong> (${p.tipo})</div>
           <div>
-            ${ongAutenticada ? `
-              <button class="btn btnSuccess" onclick="prepararEdicao(${item.id})">Editar</button>
-              <button class="btn btnDanger" onclick="deletarAnimal(${item.id})">Excluir</button>
+            ${logado ? `
+              <button class="btn btnSuccess" onclick="prepararEdicao(${p.id})">Editar</button>
+              <button class="btn btnDanger" onclick="deletarAnimal(${p.id})">Excluir</button>
             ` : '<em style="font-size:.75rem; color:#666;">Requer Login</em>'}
           </div>
         </div>
-      `).join('');
+      `).join('') : '<p>Nenhum animal cadastrado.</p>';
     }
 
     function salvarAnimal(e) {
       e.preventDefault();
-      if (!ongAutenticada) {
-        alert('Faça login primeiro!');
-        abrirModalAuth('login');
-        return;
-      }
+      if (!logado) return alert('Faça login primeiro!'), abrirModalAuth('login');
 
       const id = document.getElementById('cadId').value;
-      const urlInformada = document.getElementById('cadImg').value.trim();
-      const imagemPadrao = "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=300";
-
       const dados = {
         nome: document.getElementById('cadNome').value,
         tipo: document.getElementById('cadTipo').value,
         raca: document.getElementById('cadRaca').value,
-        img: urlInformada || imagemPadrao,
+        img: document.getElementById('cadImg').value.trim() || "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=300",
         desc: document.getElementById('cadDesc').value,
         contato: document.getElementById('cadContato').value
       };
 
       if (id) {
-        Object.assign(animais.find(a => a.id == id), dados);
+        Object.assign(animais.find(p => p.id == id), dados);
       } else {
         animais.push({ id: Date.now(), ...dados, fav: false });
       }
 
       resetarFormulario();
-      renderizarAnimais();
-      renderizarPainelOng();
+      atualizarTela();
     }
 
     function prepararEdicao(id) {
-      const pet = animais.find(a => a.id === id);
-      if (!pet) return;
-      document.getElementById('cadId').value = pet.id;
-      document.getElementById('cadNome').value = pet.nome;
-      document.getElementById('cadTipo').value = pet.tipo;
-      document.getElementById('cadRaca').value = pet.raca;
-      document.getElementById('cadImg').value = pet.img;
-      document.getElementById('cadDesc').value = pet.desc;
-      document.getElementById('cadContato').value = pet.contato;
+      const p = animais.find(item => item.id === id);
+      if (!p) return;
+      document.getElementById('cadId').value = p.id;
+      document.getElementById('cadNome').value = p.nome;
+      document.getElementById('cadTipo').value = p.tipo;
+      document.getElementById('cadRaca').value = p.raca;
+      document.getElementById('cadImg').value = p.img;
+      document.getElementById('cadDesc').value = p.desc;
+      document.getElementById('cadContato').value = p.contato;
       document.getElementById('formCrudTitle').innerText = 'Editar Animal';
       document.getElementById('btnCancelCrud').style.display = 'inline-block';
     }
 
     function deletarAnimal(id) {
       if (confirm('Deseja mesmo excluir?')) {
-        animais = animais.filter(a => a.id !== id);
-        renderizarAnimais();
-        renderizarPainelOng();
+        animais = animais.filter(p => p.id !== id);
+        atualizarTela();
       }
     }
 
@@ -288,41 +286,28 @@
     }
 
     function toggleFav(id) {
-      const pet = animais.find(a => a.id === id);
-      if (pet) {
-        pet.fav = !pet.fav;
-        salvarFavoritosNoStorage();
+      const p = animais.find(item => item.id === id);
+      if (p) {
+        p.fav = !p.fav;
+        const ids = animais.filter(item => item.fav).map(item => item.id);
+        localStorage.setItem('meusFavoritos', JSON.stringify(ids));
       }
       renderizarAnimais();
     }
 
-    function salvarFavoritosNoStorage() {
-      const favoritosIds = animais.filter(a => a.fav).map(a => a.id);
-      localStorage.setItem('meusFavoritos', JSON.stringify(favoritosIds));
-    }
-
-    function carregarFavoritosDoStorage() {
-      const favoritosSalvos = JSON.parse(localStorage.getItem('meusFavoritos')) || [];
-      animais.forEach(pet => {
-        if (favoritosSalvos.includes(pet.id)) {
-          pet.fav = true;
-        }
-      });
-    }
-
-    function setFiltro(tipo) {
-      filtroTipo = tipo;
+    function setFiltro(tipoValor) {
+      filtro = tipoValor;
       renderizarAnimais();
     }
 
     function abrirDetalhes(id) {
-      const pet = animais.find(a => a.id === id);
-      if (!pet) return;
-      document.getElementById('modalImg').src = pet.img;
-      document.getElementById('modalNome').innerText = pet.nome;
-      document.getElementById('modalRaca').innerText = pet.raca;
-      document.getElementById('modalDesc').innerText = pet.desc;
-      document.getElementById('modalContato').innerText = pet.contato;
+      const p = animais.find(item => item.id === id);
+      if (!p) return;
+      document.getElementById('modalImg').src = p.img;
+      document.getElementById('modalNome').innerText = p.nome;
+      document.getElementById('modalRaca').innerText = p.raca;
+      document.getElementById('modalDesc').innerText = p.desc;
+      document.getElementById('modalContato').innerText = p.contato;
       document.getElementById('modalDetalhes').classList.add('active');
     }
 
@@ -333,30 +318,30 @@
       document.getElementById('modalAuthOng').classList.add('active');
     }
 
-    function fecharModal(id) {
-      document.getElementById(id).classList.remove('active');
+    function fecharModal(idModal) {
+      document.getElementById(idModal).classList.remove('active');
     }
 
     function handleAuthOng(e) {
       e.preventDefault();
-      ongAutenticada = true;
+      logado = true;
       
       document.getElementById('navAuthButtons').innerHTML = `<button class="btn btnOutline" onclick="location.reload()">Sair</button>`;
-      document.getElementById('authStatusAlert').className = 'alert';
-      document.getElementById('authStatusAlert').style.background = '#D4EDDA';
-      document.getElementById('authStatusAlert').style.color = '#155724';
-      document.getElementById('authStatusAlert').innerHTML = '<span>✅ Sessão ONG ativa! Agora você pode gerenciar os animais.</span>';
+      
+      const alerta = document.getElementById('authStatusAlert');
+      alerta.className = 'alert';
+      alerta.style.background = '#D4EDDA';
+      alerta.style.color = '#155724';
+      alerta.innerHTML = '<span>✅ Sessão ONG ativa! Agora você pode gerenciar os animais.</span>';
       
       fecharModal('modalAuthOng');
       document.getElementById('formAuthOng').reset();
-      renderizarPainelOng();
-      
+      atualizarTela();
       alert('Autenticação realizada com sucesso!');
     }
 
-    carregarFavoritosDoStorage();
-    renderizarAnimais();
-    renderizarPainelOng();
+    // Inicialização da página
+    atualizarTela();
   </script>
 </body>
 </html>
