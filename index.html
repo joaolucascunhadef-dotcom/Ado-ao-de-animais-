@@ -1,266 +1,328 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sobre Patas - Adoção de Animais</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial Narrow', Arial, sans-serif;
+            background-color: white;
+        }
+
+        .pagina {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        .banner {
+            background-color: #FFFDD0;
+            width: 100%;
+            min-height: 70px;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #e6caca;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pata {
+            height: 33px;
+            width: auto;
+        }
+
+        .titulo {
+            color: #AA336A;
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .login {
+            background-color: #e6caca;
+            height: 36px;
+            padding: 0 20px;
+            border-radius: 10px;
+            border: 1px solid #AA336A;
+            color: #AA336A;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .login:hover {
+            background-color: #AA336A;
+            color: white;
+        }
+
+       
+        .frase {
+            background-color: white;
+            padding: 10px 20px;
+            max-width: 1100px;
+            margin: 0 auto 20px auto;
+        }
+
+        .titulo2 {
+            color: #AA336A;
+            font-size: clamp(28px, 5vw, 40px);
+            margin: 0 0 8px 0;
+        }
+
+        .subtitulo2 {
+            font-size: clamp(16px, 3vw, 20px);
+            color: #444;
+            margin: 0;
+        }
+
+        /* --- ÁREA DE BUSCA E FILTROS --- */
+        .visualizar_animais {
+            background-color: #e6caca;
+            padding: 20px;
+            margin-top: 10px;
+        }
+
+        .container-filtros {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .titulo-secao {
+            font-size: clamp(24px, 4vw, 30px);
+            color: #AA336A;
+            margin: 0 0 15px 0;
+        }
+
+        .barra-busca {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .pesquisa {
+            flex: 1 1 250px;
+            padding: 12px 16px;
+            border: 1px solid #AA336A;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .grupo-botoes {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tipos {
+            height: 42px;
+            padding: 0 16px;
+            border-radius: 10px;
+            border: 1px solid #AA336A;
+            background-color: #FFFDD0;
+            color: #AA336A;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tipos:hover {
+            background-color: #AA336A;
+            color: white;
+        }
+
+        .imagens_animais {
+            background-color: #e6caca;
+            min-height: 400px;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        
+        .aba_animal {
+            position: relative;
+            width: 100%;
+            max-width: 280px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .foto_animal {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .info_animal {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .info_aba {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nome_animal {
+            margin: 0;
+            font-size: 20px;
+            color: #333333;
+        }
+
+        .raca_animal {
+            margin: 0;
+            color: #666666;
+            font-size: 14px;
+        }
+
+        .botao_solicitacao {
+            margin-top: 10px;
+            background-color: #AA336A;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            width: 100%;
+        }
+
+        .botao_solicitacao:hover {
+            background-color: #882854;
+        }
+
+        .botao_excluir {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #d9534f;
+            border: 1px solid #d9534f;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .botao_excluir:hover {
+            background-color: #d9534f;
+            color: white;
+        }
+
+        .botao_favorito {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+        }
+
+        .botao_favorito img {
+            height: 22px;
+            width: 22px;
+        }
+
+        /* --- Responsividade --- */
+        @media (max-width: 600px) {
+            .banner {
+                padding: 10px 15px;
+            }
+
+            .grupo-botoes {
+                width: 100%;
+            }
+
+            .tipos {
+                flex: 1;
+            }
+
+            .aba_animal {
+                max-width: 100%;
+            }
+        }
+    </style>
 </head>
-
-
-
-<style>
-    html,
-    body {
-        margin: 0;
-        padding: 0;
-    }
-
-    .pagina {
-        margin: 0;
-        background-color: white;
-        padding: 0;
-    }
-
-    .banner {
-
-        background-color: #FFFDD0;
-        width: 100%;
-        height: 70px;
-        margin: 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 30px;
-    }
-
-    .titulo {
-
-        color: #AA336A;
-        font-family: 'Arial Narrow', Arial, sans-serif;
-        font-size: 24px;
-        padding-right: 680px;
-        padding-top: 1px;
-        margin: 0;
-    }
-
-    .login {
-
-        background-color: #e6caca;
-        height: 30px;
-        border-radius: 10px;
-        border: 1px solid #AA336A;
-        margin-right: 20px;
-
-    }
-
-    .pata {
-        height: 33px;
-        padding-left: 10px;
-
-    }
-
-    .visualizar_animais {
-
-        background-color: #e6caca;
-        height: 150px;
-        margin-top: 10px;
-        margin-bottom: 0;
-    }
-
-    .frase {
-        background-color: white;
-        height: 100px;
-
-
-    }
-
-    .titulo2 {
-        color: #AA336A;
-        font-size: 40px;
-        padding-left: 200px;
-        font-family: 'Arial Narrow', Arial, sans-serif;
-        margin: 0;
-    }
-
-    .pesquisa {
-        width: 75%;
-        flex: 1;
-        padding: 12px 16px;
-        border: 1px solid #AA336A;
-        border-radius: 10px;
-        font-size: 14px;
-        box-sizing: border-box;
-        outline: none;
-        margin-left: 20px;
-    }
-
-    .tipos {
-
-        background-color: aliceblue;
-        height: 42px;
-        border-radius: 10px;
-        border: 1px solid #AA336A;
-        background-color: #FFFDD0;
-        color: #AA336A;
-    }
-
-    .botao_favorito {
-
-        background-color: #e6caca;
-        height: 30px;
-        border-radius: 8px;
-        border: 0px;
-        color: #AA336A;
-        padding: 5px;
-
-    }
-
-    .imagens_animais {
-        background-color: #e6caca;
-        height: 400px;
-    }
-
-.imagens_animais {
-   
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
-    padding: 20px;
-}
-
-.info_animal {
-    position: relative; 
-    width: 280px;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-
-.foto_animal {
-    width: 100%;
-    height: 200px;
-    object-fit: cover; 
-}
-
-.info_animal {
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.aba_animal {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.nome_animal {
-    margin: 0;
-    font-size: 20px;
-    color: #333333;
-}
-
-.raca_animal {
-    margin: 0;
-    color: #666666;
-    font-size: 14px;
-}
-
-.botao_solicitacao {
-    margin-top: 10px;
-    background-color: #AA336A;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.botao_solicitacao:hover {
-    background-color: #882854;
-}
-
-.botao_excluir {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: rgba(255, 255, 255, 0.9);
-    color: #d9534f;
-    border: 1px solid #d9534f;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.botao_excluir:hover {
-    background-color: #d9534f;
-    color: white;
-}
-
-.botao_favorito {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-}</style>
 
 <body>
 
     <div class="pagina">
 
-
-        <div class="banner">
-            <img class="pata" src="pata.png" alt="pata">
-            <h1 class="titulo">Sobre patas</h1>
+        <header class="banner">
+            <div class="logo-area">
+                <img class="pata" src="pata.png" alt="Logo pata">
+                <h1 class="titulo">Sobre patas</h1>
+            </div>
             <button class="login">Login</button>
+        </header>
 
-        </div>
-
-
-
-        <div class="frase">
-
+        <section class="frase">
             <h1 class="titulo2">Todo animal merece um lar.</h1>
-            <p style="font-size:20px; padding-left:240px; padding-top:px;">Conectamos animais abandonados a famílias
-                amorosas</p>
+            <p class="subtitulo2">Conectamos animais abandonados a famílias amorosas</p>
+        </section>
 
-        </div>
+        <section class="visualizar_animais">
+            <div class="container-filtros">
+                <h2 class="titulo-secao">Animais disponíveis</h2>
+                
+                <div class="barra-busca">
+                    <input class="pesquisa" type="text" name="pesquisa" id="pesquisa" placeholder="Buscar por nome ou raça">
+                    
+                    <div class="grupo-botoes">
+                        <button class="tipos">Todos</button>
+                        <button class="tipos">Gatos</button>
+                        <button class="tipos">Cães</button>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div class="visualizar_animais ">
-
-            <h1
-                style="font-size:30px; padding-left:18px; color: #AA336A;  padding-top:10px; font-family: 'Arial Narrow', Arial, sans-serif;">
-                Animais disponíveis</h1>
-            <input class="pesquisa" type="text" name="pesquisa" id="pesquisa" placeholder="Buscar por nome ou raça">
-
-            <button class="tipos">Todos</button>
-            <button class="tipos">Gatos</button>
-            <button class="tipos">Cães</button>
-
-        </div>
-
-        <div class="imagens_animais">
+        <main class="imagens_animais">
 
             <div class="aba_animal">
-                <button class="botao_excluir">&times;</button>
+                <button class="botao_excluir" title="Excluir">&times;</button>
 
-                <img style="height: 250px; margin: 10px;" class="foto_animal" src="cachorro.png" alt="Foto do animal">
+                <img class="foto_animal" src="cachorro.png" alt="Foto do cachorro Bolinha">
 
                 <div class="info_animal">
                     <div class="info_aba">
                         <h3 class="nome_animal">Bolinha</h3>
-                        <button class="botao_favorito">
-                            <img style="height: 20px; " src="ame.png" alt=""> </button>
+                        <button class="botao_favorito" title="Favoritar">
+                            <img src="ame.png" alt="Favoritar">
+                        </button>
                     </div>
 
                     <p class="raca_animal">SRD</p>
@@ -269,26 +331,9 @@
                 </div>
             </div>
 
-        </div>
-
-
-
-
-
-
-
-
-
-
+        </main>
 
     </div>
-
-
-
-
-
-
-
 
 </body>
 
