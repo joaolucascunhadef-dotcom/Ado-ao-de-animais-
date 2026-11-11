@@ -1,5 +1,11 @@
 
 const pesquisa = document.getElementById('pesquisa');
 pesquisa.addEventListener('input' ,  (event) => {
-  console.log(event.target.value)
+  const value = event.target.value;
+
+  console.log(formatstring (value));
 });
+
+function formatString(value){
+return value.toLowerCase().trim()
+}
