@@ -1,18 +1,19 @@
 const pesquisa = document.getElementById('pesquisa');
 
 pesquisa.addEventListener('input', (event) => {
-  const value = formatString(event.target.value);
-  const animais = document.querySelectorAll('.imagens_animais');
+  const termosBusca = formatString(event.target.value);
+  // Seleciona cada card de animal individual
+  const animais = document.querySelectorAll('.aba_animal');
 
-  animais.forEach((animal) => {
-    // Pega o texto do elemento (ou o alt, caso sejam imagens) e formata
-    const textoAnimal = formatString(animal.textContent || animal.alt || '');
+  animais.forEach((card) => {
+    // Pega o conteúdo de texto inteiro do card (inclui nome "Bolinha" e raça "SRD")
+    const textoCard = formatString(card.textContent);
 
-    // Verifica se o texto do animal inclui o que foi digitado
-    if (textoAnimal.includes(value)) {
-      animal.style.display = 'block'; // Mostra o item
+    // Se o texto do card incluir o termo buscado, exibe; caso contrário, esconde
+    if (textoCard.includes(termosBusca)) {
+      card.style.display = 'flex'; // Mantém o layout flex do card
     } else {
-      animal.style.display = 'none';  // Oculta o item
+      card.style.display = 'none'; // Esconde o card
     }
   });
 });
