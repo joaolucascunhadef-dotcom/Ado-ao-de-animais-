@@ -1,3 +1,5 @@
 
 const pesquisa = document.getElementById('pesquisa');
-consolw.log(pesquisa)
+pesquisa.addEventListener('input' ,  (event) => {
+  console.log(event.target.value)
+});
