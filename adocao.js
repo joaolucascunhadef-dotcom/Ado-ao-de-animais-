@@ -1,4 +1,3 @@
-<script>
     // --- 1. LOGIN (Tutor vs Funcionário ONG) ---
     const botaoLogin = document.querySelector('.login');
     let perfilLogado = null; // Começa deslogado
@@ -86,4 +85,3 @@
             alert("Solicitação de adoção enviada com sucesso! A ONG entrará em contato.");
         });
     });
-</script>
