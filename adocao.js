@@ -1,37 +1,43 @@
 <script>
-    // 1. Simulação de Login (Alterna entre Tutor e Funcionário da ONG)
-    let tipoUsuario = 'tutor'; // Começa como tutor
+    // --- 1. LOGIN (Tutor vs Funcionário ONG) ---
     const botaoLogin = document.querySelector('.login');
-    const botoesExcluir = document.querySelectorAll('.botao_excluir');
-
-    // Esconde os botões de exclusão por padrão (visão do tutor)
-    botoesExcluir.forEach(btn => btn.style.display = 'none');
+    let perfilLogado = null; // Começa deslogado
 
     botaoLogin.addEventListener('click', () => {
-        if (tipoUsuario === 'tutor') {
-            tipoUsuario = 'ong';
-            botaoLogin.textContent = 'Sair (ONG)';
-            botoesExcluir.forEach(btn => btn.style.display = 'flex');
-            alert('Modo Funcionário da ONG ativado! Agora você pode excluir animais.');
+        const escolha = prompt("Digite seu perfil de acesso:\n1 - Tutor\n2 - Funcionário ONG");
+        
+        if (escolha === "1") {
+            perfilLogado = "tutor";
+            alert("Logado como Tutor! Você pode favoritar e solicitar adoção.");
+            // Esconde os botões de excluir (exclusivo para ONG)
+            document.querySelectorAll('.botao_excluir').forEach(btn => btn.style.display = 'none');
+        } else if (escolha === "2") {
+            perfilLogado = "ong";
+            alert("Logado como Funcionário da ONG! Você pode gerenciar e excluir animais.");
+            // Mostra os botões de excluir
+            document.querySelectorAll('.botao_excluir').forEach(btn => btn.style.display = 'flex');
         } else {
-            tipoUsuario = 'tutor';
-            botaoLogin.textContent = 'Login';
-            botoesExcluir.forEach(btn => btn.style.display = 'none');
-            alert('Modo Tutor ativado.');
+            alert("Opção inválida.");
         }
     });
 
-    // 2. Barra de Pesquisa (Nome ou Raça)
+    // Por padrão, ao carregar, esconde a exclusão até que alguém da ONG faça login
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll('.botao_excluir').forEach(btn => btn.style.display = 'none');
+    });
+
+
+    // --- 2. BARRA DE PESQUISA ---
     const inputPesquisa = document.getElementById('pesquisa');
     const cardsAnimais = document.querySelectorAll('.aba_animal');
 
     inputPesquisa.addEventListener('input', (e) => {
         const termo = e.target.value.toLowerCase();
-        
+
         cardsAnimais.forEach(card => {
             const nome = card.querySelector('.nome_animal').textContent.toLowerCase();
             const raca = card.querySelector('.raca_animal').textContent.toLowerCase();
-            
+
             if (nome.includes(termo) || raca.includes(termo)) {
                 card.style.display = 'flex';
             } else {
@@ -40,27 +46,44 @@
         });
     });
 
-    // 3. Filtros por Botões (Todos, Gatos, Cães)
-    const botoesTipos = document.querySelectorAll('.tipos');
 
-    botoesTipos.forEach(botao => {
+    // --- 3. FILTROS POR BOTÕES (Todos, Gatos, Cães) ---
+    const botoesFiltro = document.querySelectorAll('.tipos');
+
+    botoesFiltro.forEach(botao => {
         botao.addEventListener('click', () => {
-            const tipoFiltro = botao.textContent.trim().toLowerCase();
+            const categoria = botao.textContent.trim().toLowerCase();
 
             cardsAnimais.forEach(card => {
-                const altImg = card.querySelector('.foto_animal').alt.toLowerCase();
-                const raca = card.querySelector('.raca_animal').textContent.toLowerCase();
+                const tipoCard = card.getAttribute('data-tipo'); // 'cao' ou 'gato'
 
-                if (tipoFiltro === 'todos') {
+                if (categoria === 'todos') {
                     card.style.display = 'flex';
-                } else if (tipoFiltro === 'gatos' && (altImg.includes('gato') || raca.includes('siamês'))) {
+                } else if (categoria === 'gatos' && tipoCard === 'gato') {
                     card.style.display = 'flex';
-                } else if (tipoFiltro === 'cães' && (altImg.includes('cachorro') || raca.includes('srd'))) {
+                } else if (categoria === 'cães' && tipoCard === 'cao') {
                     card.style.display = 'flex';
                 } else {
                     card.style.display = 'none';
                 }
             });
+        });
+    });
+
+
+    // Excluir (Apenas visual, para ONG)
+    document.querySelectorAll('.botao_excluir').forEach(botao => {
+        botao.addEventListener('click', (e) => {
+            if (confirm("Deseja realmente remover este animal?")) {
+                e.target.closest('.aba_animal').remove();
+            }
+        });
+    });
+
+    // Solicitar Adoção
+    document.querySelectorAll('.botao_solicitacao').forEach(botao => {
+        botao.addEventListener('click', () => {
+            alert("Solicitação de adoção enviada com sucesso! A ONG entrará em contato.");
         });
     });
 </script>
