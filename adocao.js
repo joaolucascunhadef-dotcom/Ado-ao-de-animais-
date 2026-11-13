@@ -1,4 +1,4 @@
-    // --- 1. LOGIN (Tutor vs Funcionário ONG) ---
+    //.Login
     const botaoLogin = document.querySelector('.login');
     let perfilLogado = null; // Começa deslogado
 
@@ -8,7 +8,7 @@
         if (escolha === "1") {
             perfilLogado = "tutor";
             alert("Logado como Tutor! Você pode favoritar e solicitar adoção.");
-            // Esconde os botões de excluir (exclusivo para ONG)
+            // Esconde os botões de excluir para usuários não logados
             document.querySelectorAll('.botao_excluir').forEach(btn => btn.style.display = 'none');
         } else if (escolha === "2") {
             perfilLogado = "ong";
@@ -20,14 +20,14 @@
         }
     });
 
-    // Por padrão, ao carregar, esconde a exclusão até que alguém da ONG faça login
+    // Ao carregar, esconde a exclusão até que alguém da ONG faça login
     document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll('.botao_excluir').forEach(btn => btn.style.display = 'none');
     });
 
 
-    // --- 2. BARRA DE PESQUISA ---
-    const inputPesquisa = document.getElementById('pesquisa');
+//Barra de pesquisa
+const inputPesquisa = document.getElementById('pesquisa');
     const cardsAnimais = document.querySelectorAll('.aba_animal');
 
     inputPesquisa.addEventListener('input', (e) => {
@@ -46,7 +46,7 @@
     });
 
 
-    // --- 3. FILTROS POR BOTÕES (Todos, Gatos, Cães) ---
+    //Filtrar por raça, nome ou tipo
     const botoesFiltro = document.querySelectorAll('.tipos');
 
     botoesFiltro.forEach(botao => {
@@ -70,7 +70,7 @@
     });
 
 
-    // Excluir (Apenas visual, para ONG)
+    // Excluir 
     document.querySelectorAll('.botao_excluir').forEach(botao => {
         botao.addEventListener('click', (e) => {
             if (confirm("Deseja realmente remover este animal?")) {
