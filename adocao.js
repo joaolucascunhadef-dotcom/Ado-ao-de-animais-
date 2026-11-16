@@ -1,9 +1,15 @@
     //.Login
-    const botaoLogin = document.querySelector('.login');
-    let perfilLogado = null; // Começa deslogado
+const botaoLogin = document.querySelector('.login');
+const divLogin = document.querySelector('.fazerLogin');
 
-    botaoLogin.addEventListener('click', () => {
-     const botao = document.getElementById('b');
+// Adiciona o evento de clique
+botaoLogin.addEventListener('click', function() {
+    if (divLogin.style.display === 'none' || divLogin.style.display === '') {
+        divLogin.style.display = 'block';
+    } else {
+        divLogin.style.display = 'none';
+    }
+});
 
 
     // Ao carregar, esconde a exclusão até que alguém da ONG faça login
