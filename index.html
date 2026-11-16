@@ -256,13 +256,26 @@
             width: 22px;
         }
 
-        .fazerLogin{
-            height: 150px;
-            width: 150px;
-            background-color:  #FFFDD0:
-            display: none;
-            
-        }
+       .fazerLogin {
+    width: 280px;
+    background-color: #FFFDD0; 
+    border: 2px solid #AA336A;
+    border-radius: 10px;
+    padding: 20px;
+    display: none; 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 1000; 
+}
+
+.fazerLogin label, .fazerLogin input, .fazerLogin button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
             
         /* --- Responsividade --- */
         @media (max-width: 600px) {
