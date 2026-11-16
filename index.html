@@ -276,7 +276,25 @@
     width: 100%;
     margin-bottom: 10px;
 }
+
+    .criarConta{
+    width: 280px;
+    background-color: #FFFDD0; 
+    border: 2px solid #AA336A;
+    border-radius: 10px;
+    padding: 20px;
+    display: none; 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 1000; 
+        
+}
+
             
+        
         /* --- Responsividade --- */
         @media (max-width: 600px) {
             .banner {
@@ -379,6 +397,22 @@
 
  <button class="criar_contaTutor" title="criaConta">
      Criar conta </button>
+</div>
+
+<div class="criarConta">
+<label for="emailC" id = "emailC" name="emailC" placeholder="Digite seu email">Email:</label>
+<input type="emailC" id="emailC" name="emailC">
+
+<label for="senhaC" id = "senhaC" name="senhaC" placeholder="Digite sua senha">Senha:</label>
+<input type="password" id="password" name="senhaC">
+
+<label for="senhaC2" id = "senhaC2" name="senhaC2" placeholder="Digite sua senha">Confirme sua senha:</label>
+<input type="password" id="password" name="senhaC">
+
+<button class="loginOK" title="loginOK">
+     Pronto </button>
+
+ 
 </div>
     
     <script src="adocao.js"></script>
