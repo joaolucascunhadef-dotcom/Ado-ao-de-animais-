@@ -13,17 +13,23 @@ const botaoAbrirCriarConta = document.querySelector('.criar_contaTutor');
 
 botaoAbrirCriarConta.addEventListener('click', function() {
     divCriarConta.classList.toggle('ativo');
-    divLogin.classList.remove('ativo'); // Fecha a janela de login
-});
+    divLogin.classList.remove('ativo'); 
 
 
 const botaoFinalCriarConta = document.querySelector('.botaoConta');
 
 botaoFinalCriarConta.addEventListener('click', function() {
-    alert('Conta criada com sucesso!');
+    
     divCriarConta.classList.remove('ativo'); // Fecha a janela após criar
 });
+//Verificar informações da criação de conta
+const senha1 = document.querySelector('.senhaC'); 
+const senha2 = document.querySelector('.senhaC2'); 
 
+    if(senha1 === senha2){
+       alert('Conta criada com sucesso!');
+    }else{
+        alert ('Digite a mesma senha nos dois campos')
 
 // Ao carregar, esconde a exclusão até que alguém da ONG faça login
     document.addEventListener("DOMContentLoaded", () => {
