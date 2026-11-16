@@ -1,13 +1,31 @@
-    //.Login
+//Login
 const botaoLogin = document.querySelector('.login');
 const divLogin = document.querySelector('.fazerLogin');
+const divCriarConta = document.querySelector('.criarConta');
 
 botaoLogin.addEventListener('click', function() {
     divLogin.classList.toggle('ativo');
+    divCriarConta.classList.remove('ativo');
+});
+
+// Criar conta
+const botaoAbrirCriarConta = document.querySelector('.criar_contaTutor');
+
+botaoAbrirCriarConta.addEventListener('click', function() {
+    divCriarConta.classList.toggle('ativo');
+    divLogin.classList.remove('ativo'); // Fecha a janela de login
 });
 
 
-    // Ao carregar, esconde a exclusão até que alguém da ONG faça login
+const botaoFinalCriarConta = document.querySelector('.botaoConta');
+
+botaoFinalCriarConta.addEventListener('click', function() {
+    alert('Conta criada com sucesso!');
+    divCriarConta.classList.remove('ativo'); // Fecha a janela após criar
+});
+
+
+// Ao carregar, esconde a exclusão até que alguém da ONG faça login
     document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll('.botao_excluir').forEach(btn => btn.style.display = 'none');
     });
