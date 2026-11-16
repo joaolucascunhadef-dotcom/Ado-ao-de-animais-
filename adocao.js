@@ -3,22 +3,8 @@
     let perfilLogado = null; // Começa deslogado
 
     botaoLogin.addEventListener('click', () => {
-        const escolha = prompt("Digite seu perfil de acesso:\n1 - Tutor\n2 - Funcionário ONG");
-        
-        if (escolha === "1") {
-            perfilLogado = "tutor";
-            alert("Logado como Tutor! Você pode favoritar e solicitar adoção.");
-            // Esconde os botões de excluir para usuários não logados
-            document.querySelectorAll('.botao_excluir').forEach(btn => btn.style.display = 'none');
-        } else if (escolha === "2") {
-            perfilLogado = "ong";
-            alert("Logado como Funcionário da ONG! Você pode gerenciar e excluir animais.");
-            // Mostra os botões de excluir
-            document.querySelectorAll('.botao_excluir').forEach(btn => btn.style.display = 'flex');
-        } else {
-            alert("Opção inválida.");
-        }
-    });
+     const botao = document.getElementById('b');
+
 
     // Ao carregar, esconde a exclusão até que alguém da ONG faça login
     document.addEventListener("DOMContentLoaded", () => {
