@@ -20,16 +20,18 @@ const botaoFinalCriarConta = document.querySelector('.botaoConta');
 
 botaoFinalCriarConta.addEventListener('click', function() {
     
-    divCriarConta.classList.remove('ativo'); // Fecha a janela após criar
-});
-//Verificar informações da criação de conta
-const senha1 = document.querySelector('.senhaC'); 
+    divCriarConta.classList.remove('ativo'); 
+    
+    //Verificar informações da criação de conta
+    const senha1 = document.querySelector('.senhaC'); 
 const senha2 = document.querySelector('.senhaC2'); 
 
     if(senha1 === senha2){
        alert('Conta criada com sucesso!');
     }else{
         alert ('Digite a mesma senha nos dois campos')
+});
+
 
 // Ao carregar, esconde a exclusão até que alguém da ONG faça login
     document.addEventListener("DOMContentLoaded", () => {
