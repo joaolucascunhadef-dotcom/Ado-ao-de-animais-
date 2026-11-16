@@ -2,13 +2,8 @@
 const botaoLogin = document.querySelector('.login');
 const divLogin = document.querySelector('.fazerLogin');
 
-// Adiciona o evento de clique
 botaoLogin.addEventListener('click', function() {
-    if (divLogin.style.display === 'none' || divLogin.style.display === '') {
-        divLogin.style.display = 'block';
-    } else {
-        divLogin.style.display = 'none';
-    }
+    divLogin.classList.toggle('ativo');
 });
 
 
