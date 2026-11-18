@@ -1,48 +1,53 @@
-//Login
+// Login
 const botaoLogin = document.querySelector('.login');
 const divLogin = document.querySelector('.fazerLogin');
 const divCriarConta = document.querySelector('.criarConta');
 
-botaoLogin.addEventListener('click', function() {
-    divLogin.classList.toggle('ativo');
-    divCriarConta.classList.remove('ativo');
-});
+if (botaoLogin) {
+    botaoLogin.addEventListener('click', function() {
+        divLogin.classList.toggle('ativo');
+        divCriarConta.classList.remove('ativo');
+    });
+}
 
 // Criar conta
 const botaoAbrirCriarConta = document.querySelector('.criar_contaTutor');
 
-botaoAbrirCriarConta.addEventListener('click', function() {
-    divCriarConta.classList.toggle('ativo');
-    divLogin.classList.remove('ativo'); 
-
+if (botaoAbrirCriarConta) {
+    botaoAbrirCriarConta.addEventListener('click', function() {
+        divCriarConta.classList.toggle('ativo');
+        divLogin.classList.remove('ativo'); 
+    });
+}
 
 const botaoFinalCriarConta = document.querySelector('.botaoConta');
 
-botaoFinalCriarConta.addEventListener('click', function() {
-    
-    divCriarConta.classList.remove('ativo'); 
-    
-    //Verificar informações da criação de conta
-    const senha1 = document.querySelector('.senhaC'); 
-const senha2 = document.querySelector('.senhaC2'); 
+if (botaoFinalCriarConta) {
+    botaoFinalCriarConta.addEventListener('click', function() {
+        divCriarConta.classList.remove('ativo'); 
+        
+        // Verificar informações da criação de conta (pegando o .value)
+        const senha1 = document.querySelector('.senhaC').value; 
+        const senha2 = document.querySelector('.senhaC2').value; 
 
-    if(senha1 === senha2){
-       alert('Conta criada com sucesso!');
-    }else{
-        alert ('Digite a mesma senha nos dois campos')
-});
-
+        if (senha1 === senha2) {
+           alert('Conta criada com sucesso!');
+        } else {
+            alert('Digite a mesma senha nos dois campos');
+        }
+    });
+}
 
 // Ao carregar, esconde a exclusão até que alguém da ONG faça login
-    document.addEventListener("DOMContentLoaded", () => {
-        document.querySelectorAll('.botao_excluir').forEach(btn => btn.style.display = 'none');
-    });
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.botao_excluir').forEach(btn => btn.style.display = 'none');
+});
 
-
-//Barra de pesquisa
+// Barra de pesquisa
 const inputPesquisa = document.getElementById('pesquisa');
-    const cardsAnimais = document.querySelectorAll('.aba_animal');
+const cardsAnimais = document.querySelectorAll('.aba_animal');
 
+if (inputPesquisa) {
     inputPesquisa.addEventListener('input', (e) => {
         const termo = e.target.value.toLowerCase();
 
@@ -57,44 +62,43 @@ const inputPesquisa = document.getElementById('pesquisa');
             }
         });
     });
+}
 
+// Filtrar por raça, nome ou tipo
+const botoesFiltro = document.querySelectorAll('.tipos');
 
-    //Filtrar por raça, nome ou tipo
-    const botoesFiltro = document.querySelectorAll('.tipos');
+botoesFiltro.forEach(botao => {
+    botao.addEventListener('click', () => {
+        const categoria = botao.textContent.trim().toLowerCase();
 
-    botoesFiltro.forEach(botao => {
-        botao.addEventListener('click', () => {
-            const categoria = botao.textContent.trim().toLowerCase();
+        cardsAnimais.forEach(card => {
+            const tipoCard = card.getAttribute('data-tipo'); // 'cao' ou 'gato'
 
-            cardsAnimais.forEach(card => {
-                const tipoCard = card.getAttribute('data-tipo'); // 'cao' ou 'gato'
-
-                if (categoria === 'todos') {
-                    card.style.display = 'flex';
-                } else if (categoria === 'gatos' && tipoCard === 'gato') {
-                    card.style.display = 'flex';
-                } else if (categoria === 'cães' && tipoCard === 'cao') {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-    });
-
-
-    // Excluir 
-    document.querySelectorAll('.botao_excluir').forEach(botao => {
-        botao.addEventListener('click', (e) => {
-            if (confirm("Deseja realmente remover este animal?")) {
-                e.target.closest('.aba_animal').remove();
+            if (categoria === 'todos') {
+                card.style.display = 'flex';
+            } else if (categoria === 'gatos' && tipoCard === 'gato') {
+                card.style.display = 'flex';
+            } else if (categoria === 'cães' && tipoCard === 'cao') {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
             }
         });
     });
+});
 
-    // Solicitar Adoção
-    document.querySelectorAll('.botao_solicitacao').forEach(botao => {
-        botao.addEventListener('click', () => {
-            alert("Solicitação de adoção enviada com sucesso! A ONG entrará em contato.");
-        });
+// Excluir 
+document.querySelectorAll('.botao_excluir').forEach(botao => {
+    botao.addEventListener('click', (e) => {
+        if (confirm("Deseja realmente remover este animal?")) {
+            e.target.closest('.aba_animal').remove();
+        }
     });
+});
+
+// Solicitar Adoção
+document.querySelectorAll('.botao_solicitacao').forEach(botao => {
+    botao.addEventListener('click', () => {
+        alert("Solicitação de adoção enviada com sucesso! A ONG entrará em contato.");
+    });
+});
