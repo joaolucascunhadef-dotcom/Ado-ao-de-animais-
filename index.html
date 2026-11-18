@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -258,49 +257,54 @@
         }
 
        .fazerLogin {
-    width: 280px;
-    background-color: #FFFDD0; 
-    border: 2px solid #AA336A;
-    border-radius: 10px;
-    padding: 20px;
-    display: none; 
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    z-index: 1000; 
-}
+            width: 280px;
+            background-color: #FFFDD0; 
+            border: 2px solid #AA336A;
+            border-radius: 10px;
+            padding: 20px;
+            display: none; 
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000; 
+        }
 
-.fazerLogin label, .fazerLogin input, .fazerLogin button {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
-}
+        .fazerLogin label, .fazerLogin input, .fazerLogin button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
 
-    .criarConta{
-    width: 280px;
-    background-color: #FFFDD0; 
-    border: 2px solid #AA336A;
-    border-radius: 10px;
-    padding: 20px;
-    display: none; 
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    z-index: 1000; 
-        
-}
+        .criarConta {
+            width: 280px;
+            background-color: #FFFDD0; 
+            border: 2px solid #AA336A;
+            border-radius: 10px;
+            padding: 20px;
+            display: none; 
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;         
+        }
 
-   .fazerLogin.ativo {
-    display: block;
-}
+        .criarConta label, .criarConta input, .criarConta button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
 
-.criarConta.ativo {
-    display: block;
-}         
+        .fazerLogin.ativo {
+            display: block;
+        }
+
+        .criarConta.ativo {
+            display: block;
+        }         
         
         /* --- Responsividade --- */
         @media (max-width: 600px) {
@@ -326,103 +330,95 @@
 <body>
 
     <div class="tela">
-    <div class="pagina">
+        <div class="pagina">
 
-        <header class="banner">
-            <div class="logo-area">
-                <img class="pata" src="pata.png" alt="Logo pata">
-                <h1 class="titulo">Sobre patas</h1>
-            </div>
-            <button class="login">Login</button>
-        </header>
+            <header class="banner">
+                <div class="logo-area">
+                    <img class="pata" src="pata.png" alt="Logo pata">
+                    <h1 class="titulo">Sobre patas</h1>
+                </div>
+                <button class="login">Login</button>
+            </header>
 
-        <section class="frase">
-            <h1 class="titulo2">Todo animal merece um lar.</h1>
-            <p class="subtitulo2">Conectamos animais abandonados a famílias amorosas</p>
-        </section>
+            <section class="frase">
+                <h1 class="titulo2">Todo animal merece um lar.</h1>
+                <p class="subtitulo2">Conectamos animais abandonados a famílias amorosas</p>
+            </section>
 
-        <section class="visualizar_animais">
-            <div class="container-filtros">
-                <h2 class="titulo-secao">Animais disponíveis</h2>
-                
-                <div class="barra-busca">
-                    <input class="pesquisa" type="text" name="pesquisa" id="pesquisa" placeholder="Buscar por nome ou raça">
+            <section class="visualizar_animais">
+                <div class="container-filtros">
+                    <h2 class="titulo-secao">Animais disponíveis</h2>
                     
-                    <div class="grupo-botoes">
-                        <button class="tipos">Todos</button>
-                        <button class="tipos">Gatos</button>
-                        <button class="tipos">Cães</button>
+                    <div class="barra-busca">
+                        <input class="pesquisa" type="text" name="pesquisa" id="pesquisa" placeholder="Buscar por nome ou raça">
+                        
+                        <div class="grupo-botoes">
+                            <button class="tipos">Todos</button>
+                            <button class="tipos">Gatos</button>
+                            <button class="tipos">Cães</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="imagens_animais">
+                <div class="aba_animal" data-tipo="cao">
+                    <button class="botao_excluir" title="Excluir">&times;</button>
+                    <img class="foto_animal" src="cachorro.png" alt="Foto do cachorro Bolinha">
+                    <div class="info_animal">
+                        <div class="info_aba">
+                            <h3 class="nome_animal">Bolinha</h3>
+                            <button class="botao_favorito" title="Favoritar">
+                                <img src="ame.png" alt="Favoritar">
+                            </button>
+                        </div>
+                        <p class="raca_animal">SRD</p>
+                        <button class="botao_solicitacao">Quero Adotar</button>
+                    </div>
+                </div>
+
+                <div class="aba_animal" data-tipo="gato">
+                    <button class="botao_excluir" title="Excluir">&times;</button>
+                    <img class="foto_animal" src="gato.png" alt="Foto do gato Cereal">
+                    <div class="info_animal">
+                        <div class="info_aba">
+                            <h3 class="nome_animal">Cereal</h3>
+                            <button class="botao_favorito" title="Favoritar">
+                                <img src="ame.png" alt="Favoritar">
+                            </button>
+                        </div>
+                        <p class="raca_animal">Siamês</p>
+                        <button class="botao_solicitacao">Quero Adotar</button>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <div class="imagens_animais">
-
-<div class="aba_animal" data-tipo="cao">
-    <button class="botao_excluir" title="Excluir">&times;</button>
-    <img class="foto_animal" src="cachorro.png" alt="Foto do cachorro Bolinha">
-    <div class="info_animal">
-        <div class="info_aba">
-            <h3 class="nome_animal">Bolinha</h3>
-            <button class="botao_favorito" title="Favoritar">
-                <img src="ame.png" alt="Favoritar">
-            </button>
-        </div>
-        <p class="raca_animal">SRD</p>
-        <button class="botao_solicitacao">Quero Adotar</button>
-    </div>
-</div>
-
-<div class="aba_animal" data-tipo="gato">
-    <button class="botao_excluir" title="Excluir">&times;</button>
-    <img class="foto_animal" src="gato.png" alt="Foto do gato Cereal">
-    <div class="info_animal">
-        <div class="info_aba">
-            <h3 class="nome_animal">Cereal</h3>
-            <button class="botao_favorito" title="Favoritar">
-                <img src="ame.png" alt="Favoritar">
-            </button>
-        </div>
-        <p class="raca_animal">Siamês</p>
-        <button class="botao_solicitacao">Quero Adotar</button>
-    </div>
-</div>
 
         </div>
-
     </div>
-     </div>
     
-<div class="fazerLogin">
-<label for="email" id = "email" name="email" placeholder="Digite seu email">Email:</label>
-<input type="email" id="email" name="email">
+    <div class="fazerLogin">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
 
-<label for="senha" id = "senha" name="senha" placeholder="Digite sua senha">Senha:</label>
-<input type="password" id="password" name="senha">
+        <label for="password">Senha:</label>
+        <input type="password" id="password" name="senha">
 
-<button class="loginOK" title="loginOK">
-     Pronto </button>
+        <button class="loginOK" title="loginOK">Pronto</button>
+        <button class="criar_contaTutor" title="Criar Conta">Criar conta</button>
+    </div>
 
- <button class="criar_contaTutor>
-     Criar conta </button>
-</div>
+    <div class="criarConta">
+        <label for="emailC">Email:</label>
+        <input type="email" id="emailC" name="emailC">
 
-<div class="criarConta">
-<label for="emailC" id = "emailC" name="emailC" placeholder="Digite seu email">Email:</label>
-<input type="emailC" id="emailC" name="emailC">
+        <label for="senhaC">Senha:</label>
+        <input type="password" class="senhaC" name="senhaC">
 
-<label for="senhaC" id = "senhaC" name="senhaC" placeholder="Digite sua senha">Senha:</label>
-<input type="password" id="password" name="senhaC">
+        <label for="senhaC2">Confirme sua senha:</label>
+        <input type="password" class="senhaC2" name="senhaC2">
 
-<label for="senhaC2" id = "senhaC2" name="senhaC2" placeholder="Digite sua senha">Confirme sua senha:</label>
-<input type="password" id="password" name="senhaC">
-
-<button class="botaoConta" title="botaoConta">
-     Criar conta </button>
-
- 
-</div>
+        <button class="botaoConta" title="botaoConta">Criar conta</button>
+    </div>
     
     <script src="adocao.js"></script>
 </body>
