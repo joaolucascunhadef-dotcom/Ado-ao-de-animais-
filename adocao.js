@@ -21,11 +21,13 @@ if (botaoAbrirCriarConta) {
 }
 
 const botaoFinalCriarConta = document.querySelector('.botaoConta');
-
+const tela = document.querySelector('.tela');
+    
 if (botaoFinalCriarConta) {
     botaoFinalCriarConta.addEventListener('click', function() {
         divCriarConta.classList.remove('ativo'); 
-        
+        tela.style.display = "block";
+            
         // Verificar informações da criação de conta (pegando o .value)
         const senha1 = document.querySelector('.senhaC').value; 
         const senha2 = document.querySelector('.senhaC2').value; 
